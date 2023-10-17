@@ -13,9 +13,8 @@
 // WHEN I open the `logo.svg` file in a browser
 // THEN I am shown a 300x200 pixel image that matches the criteria I entered
 
-const inquirer = require('inquirer');
-const Logo = require('./Logo');     //make path right
-const generateSVG = require('./svgGenerator');  // need to create this class
+const Logo = require('./lib/Logo');
+const SvgGenerator = require('./svgGenerator'); // Corrected path
 const fs = require('fs');
 
 async function main() {
@@ -32,7 +31,7 @@ async function main() {
     );
 
     // Generate SVG from the logo
-    const svgString = generateSVG(logo);
+    const svgString = SvgGenerator.generate(logo);
 
     // Write SVG to a file
     fs.writeFileSync('logo.svg', svgString);
