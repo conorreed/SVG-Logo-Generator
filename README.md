@@ -26,7 +26,7 @@ Refer to the [License file](LICENSE).
 Me and my dad + google
 
 ## Tests
-use jest to run tests
+Link to Demo video: https://youtu.be/maO6HRFl980
 
 ## Author
 - **Conor Reed**
