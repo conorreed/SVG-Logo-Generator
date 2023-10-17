@@ -13,7 +13,35 @@
 // WHEN I open the `logo.svg` file in a browser
 // THEN I am shown a 300x200 pixel image that matches the criteria I entered
 
-const { promptUserForLogoInfo } = require('./');
+const inquirer = require('inquirer');
+const Logo = require('./Logo');     //make path right
+const generateSVG = require('./svgGenerator');  // need to create this class
+const fs = require('fs');
 
-// Start the application by prompting the user for logo information
-promptUserForLogoInfo();
+async function main() {
+  try {
+    // Prompt the user for logo information
+    const logoInfo = await Logo.promptUserForInfo();
+
+    // Create a Logo instance
+    const logo = new Logo(
+      logoInfo.text,
+      logoInfo.textColor,
+      logoInfo.shape,
+      logoInfo.shapeColor
+    );
+
+    // Generate SVG from the logo
+    const svgString = generateSVG(logo);
+
+    // Write SVG to a file
+    fs.writeFileSync('logo.svg', svgString);
+
+    console.log('Logo SVG created successfully.');
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
+}
+
+// Run the main function
+main();
